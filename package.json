@@ -1,0 +1,22 @@
+{
+  "name": "encryptcap",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Encrypt Capital \u2014 marketing site, investor desk and manager console (MERN)",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "setup": "node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:api": "npm --prefix backend run dev",
+    "dev:web": "npm --prefix frontend run dev",
+    "seed": "npm --prefix backend run seed",
+    "smoke": "npm --prefix backend run smoke",
+    "test": "npm --prefix backend test",
+    "typecheck": "npm --prefix backend run typecheck && npm --prefix frontend run typecheck",
+    "build": "npm --prefix backend run build && npm --prefix frontend run build",
+    "start": "npm --prefix backend start"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

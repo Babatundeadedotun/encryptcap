@@ -1,0 +1,11 @@
+# Netlify SPA fallback.
+#
+# Vite copies everything in public/ into dist/, so this ships inside the build
+# folder itself — which means it works for a drag-and-drop deploy, where
+# netlify.toml (one level up, outside dist) is never read.
+#
+# Without this, the app loads at "/" but refreshing /about or /pricing returns
+# a 404: Netlify looks for a file at that path and there isn't one. React Router
+# needs every unknown path handed index.html so it can route on the client.
+
+/*    /index.html   200

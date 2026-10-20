@@ -1,0 +1,46 @@
+# Render blueprint for the EncryptCap API.
+#
+# Optional: you can create the service by hand in the dashboard instead and this
+# file is ignored. If you do use it — Render → New → Blueprint → pick this repo —
+# it creates the service with the right build and start commands already set.
+#
+# Secrets are deliberately NOT in this file. Every value marked `sync: false` is
+# prompted for on first deploy and stored by Render, never committed here.
+
+services:
+  - type: web
+    name: encryptcap-api
+    runtime: node
+    plan: free
+    region: frankfurt # closest of Render's regions to Lagos; oregon/singapore also fine
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # Atlas connection string, with the password filled in and the database
+      # name before the "?" — e.g. .../encryptcap?retryWrites=true&w=majority
+      - key: MONGODB_URI
+        sync: false
+
+      # Signs the login cookie. Generate with: openssl rand -hex 48
+      - key: JWT_SECRET
+        generateValue: true
+
+      # Your live site address, no trailing slash. Comma-separate several.
+      # The API refuses to start if this still says localhost.
+      - key: CLIENT_ORIGIN
+        sync: false
+
+      # The manager login created on an empty database, and its first password.
+      # The API refuses to start if the password is left at the documented default.
+      - key: SEED_MANAGER_EMAIL
+        sync: false
+      - key: SEED_MANAGER_PASSWORD
+        sync: false
+
+      - key: JWT_EXPIRES_IN
+        value: 7d

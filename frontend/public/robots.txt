@@ -1,0 +1,8 @@
+# The staff sign-in and the signed-in app are not for crawlers.
+# Disallow only asks a crawler not to fetch these; the /admin page also sends
+# a noindex tag, which is what actually keeps it out of search results.
+User-agent: *
+Disallow: /admin
+Disallow: /app/
+
+Allow: /

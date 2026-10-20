@@ -1,0 +1,13 @@
+{
+  "name": "Encrypt Capital",
+  "short_name": "EncryptCap",
+  "description": "USD-denominated managed accounts for Nigerian investors.",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#0a2342",
+  "background_color": "#fffdf7",
+  "display": "standalone",
+  "start_url": "/"
+}

@@ -1,0 +1,27 @@
+/* Design tokens — ported verbatim from the Claude Design prototype (encrypt-app.js).
+   These are the source of truth for the brand: deep petrol/navy ink, warm cream
+   ground, gold accent. Do not tweak values here without a design decision. */
+:root {
+  --bg: #f7f1e5;
+  --surface: #fffdf7;
+  --ink: #0a2342;
+  --navy: #0e2b4d;
+  --navySoft: #1b4f8a;
+  --blue: #2e9bd6;
+  --blueDeep: #2b6cb0;
+  --gold: #f2a900;
+  --goldDim: #c98a00;
+  --red: #e5392b;
+  --green: #1f9d6b;
+  --text: #0a2342;
+  --textMute: #5d6a78;
+  --textFaint: #8d97a2;
+  --onDark: #eaf1f8;
+  --onDarkMute: #9fb4ca;
+  --line: #e3d8c0;
+  --lineSoft: #efe7d4;
+
+  /* Hero texture overlay strength. Exposed as the `heroOverlay` design prop in
+     the prototype (range 0–0.9). */
+  --texO: 0.45;
+}

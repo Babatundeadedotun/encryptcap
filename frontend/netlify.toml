@@ -1,0 +1,49 @@
+# Netlify configuration for the EncryptCap web app.
+#
+# In the Netlify UI set "Base directory" to `frontend` and it will pick this up.
+# Set VITE_API_BASE under Site settings → Environment variables.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Option A (recommended): proxy the API through this domain ───────────────
+# Uncomment and point `to` at your API host. The browser then sees a single
+# origin, so the session cookie stays first-party — which matters because
+# Safari and Brave block third-party cookies by default.
+#
+# With this on, leave VITE_API_BASE EMPTY.
+#
+# [[redirects]]
+#   from = "/api/*"
+#   to = "https://encryptcap-api.onrender.com/api/:splat"
+#   status = 200
+#   force = true
+
+# ── Option B: call the API directly on its own domain ───────────────────────
+# Skip the proxy above and set VITE_API_BASE to the API's URL instead. You must
+# then add this site's URL to CLIENT_ORIGIN in the API's environment, and both
+# sides must be HTTPS or the login cookie is dropped.
+
+# SPA fallback — the app uses real URL paths, so unknown paths must return
+# index.html rather than a 404. Keep this LAST so it doesn't shadow /api/*.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Fingerprinted bundles never change, so they can be cached hard.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
